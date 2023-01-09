@@ -11,11 +11,31 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Upload a file to Google Drive
-        uses: willo32/google-drive-upload-action@v1
+        
+      - name: Archive files
+        run: |
+          sudo apt-get update
+          sudo apt-get install zip
+          zip -r archive.zip *
+          
+      - name: Upload to gdrive
+        uses: adityak74/google-drive-upload-git-action@main
         with:
-          target: ./*
           credentials: ${{ secrets.GOOGLE_DRIVE_CRED }}
-          parent_folder_id: CCNAv7
-          child_folder: repo
+          filename: "archive.zip"
+          folderId: ${{ secrets.FOLDER_ID }}
+          overwrite: "true" # optional boolean
+          
+      - name: Make Directory Structure
+        run: |
+          mkdir -p w/x/y
+          date +%s > w/x/y/z
+          
+      - name: Mirror Directory Structure
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.GOOGLE_DRIVE_CRED }}
+          filename: w/x/y/z
+          folderId: ${{ secrets.FOLDER_ID }}
+          overwrite: "true"
+          mirrorDirectoryStructure: "true"
