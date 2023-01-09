@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+    - main
+    - master
+  workflow_dispatch:
+  
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Upload a file to Google Drive
+        uses: willo32/google-drive-upload-action@v1
+        with:
+          target: .
+          credentials: ${{ secrets.google_dive_credentials }}
+          parent_folder_id: CCNAv7
+          child_folder: repo
