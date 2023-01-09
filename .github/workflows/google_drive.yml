@@ -16,6 +16,6 @@ jobs:
         uses: willo32/google-drive-upload-action@v1
         with:
           target: .
-          credentials: ${{ secrets.google_dive_credentials }}
+          credentials: ${{ secrets.GOOGLE_DRIVE_CRED }}
           parent_folder_id: CCNAv7
           child_folder: repo
