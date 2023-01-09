@@ -24,5 +24,3 @@ jobs:
           credentials: ${{ secrets.GOOGLE_DRIVE_CRED }}
           filename: "archive.zip"
           folderId: ${{ secrets.FOLDER_ID }}
-          name: "archive.zip"
-          overwrite: "true" # optional boolean
