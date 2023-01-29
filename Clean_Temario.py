@@ -1,4 +1,4 @@
-# Remove files thar has extension .descarga
+# Remove files with extension .descarga
 
 import os
 import sys
